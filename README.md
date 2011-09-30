@@ -8,7 +8,7 @@ Download
 
 >	sh ./keygen.sh
 
-Then post the public key to notihub.unfuddle.com
+Then add the public key at https://notihub.unfuddle.com/a#/people/settings
 
 ###Clone 
 >	git clone notihubrepo:notihub/notihub.git
