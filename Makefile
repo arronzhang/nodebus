@@ -8,14 +8,14 @@ test:
 $(RSA):
 	@echo "\n$(COLOR)Gengrate ssh key to $(RSA)$(COLOREND)\n"
 	@ssh-keygen -t rsa -f $(RSA)
-	@echo "\n$(COLOR)Now you can post the $(RSA).pub content to notihub.unfuddle.com$(COLOREND)\n"
+	@echo "\n$(COLOR)Now you can post the $(RSA).pub content to https://notihub.unfuddle.com/a#/people/settings$(COLOREND)\n"
 	@cat $(RSA).pub
 	@echo "\n"
 
 ssh: $(RSA)
 	@if ! test -f $(SSH) || ! grep -q notihub $(SSH); then \
 		echo "\n$(COLOR)Add host notihub to $(SSH)$(COLOREND)\n";\
-		echo "\nHost notihub.unfuddle.com \nHostName notihub.unfuddle.com \nIdentityFile $(RSA)" >> $(SSH);\
+		echo "\nHost notihub.unfuddle.com \nIdentitiesOnly yes \nIdentityFile $(RSA)" >> $(SSH);\
 		fi;
 
 .PHONY: test
