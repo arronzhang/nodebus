@@ -1,0 +1,6 @@
+[submodule "api.notihub.com"]
+	path = api.notihub.com
+	url = git@notihub.unfuddle.com:notihub/notihub-api.git
+[submodule "inotihub"]
+	path = inotihub
+	url = git@notihub.unfuddle.com:notihub/inotihub.git
