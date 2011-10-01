@@ -4,3 +4,6 @@
 [submodule "inotihub"]
 	path = inotihub
 	url = git@notihub.unfuddle.com:notihub/inotihub.git
+[submodule "push.notihub.com"]
+	path = push.notihub.com
+	url = git@notihub.unfuddle.com:notihub/notihub-push.git
