@@ -27,7 +27,7 @@ POST /register\_client
 ###Parameters
 
 id client id
-type [apns, mqtts] notification server type 
+type [apns, mqtt] notification server type 
 token notification server token
 platform [iphone,ipad,itouch,andriod]
 
