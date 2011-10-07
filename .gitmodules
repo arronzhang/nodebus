@@ -7,3 +7,6 @@
 [submodule "push.notihub.com"]
 	path = push.notihub.com
 	url = git@notihub.unfuddle.com:notihub/notihub-push.git
+[submodule "m.notihub.com"]
+	path = m.notihub.com
+	url = git@notihub.unfuddle.com:notihub/notihub-mweb.git
