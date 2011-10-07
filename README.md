@@ -23,8 +23,11 @@ Then add the public key at https://notihub.unfuddle.com/a#/people/settings
 Services
 ---------------------------
 
-*	m.notihub.com 6001
-*	api.notihub.com 6101
-*	push.notihub.com 25
-*	mqtt.notihub.com 1883
+*	monit
+*	nginx
+*	mongodb			127.0.0.1:27017	
+*	m.notihub.com   	127.0.0.1:6001	
+*	api.notihub.com 	127.0.0.1:6101	
+*	push.notihub.com	0.0.0.0:25		mail server
+*	mqtt.notihub.com	0.0.0.0:1883		mosquitto	
 
