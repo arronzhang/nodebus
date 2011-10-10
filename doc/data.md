@@ -28,6 +28,7 @@ userId			|ObjectID	|所属用户ID
 token			|String		|通知服务器的节点id
 platform		|String		|客户端平台描述
 type			|String		|客户端系统类型[andriod,ios]
+desc			|String		|客户端描述
 createAt		|Date		|创建时间
 updateAt		|Date		|创建时间
 
