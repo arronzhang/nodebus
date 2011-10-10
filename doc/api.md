@@ -30,6 +30,7 @@ id client id
 type client type[andriod,ios]
 token notification server token
 platform [iphone,ipad,itouch,andriod]
+desc	[notihub for andriod 1.0]
 
 3f752377e9e831c5d8e9fe06ab9c40712f60011fd9ca252e8b4316a06e65a601
 
