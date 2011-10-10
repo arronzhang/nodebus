@@ -1,0 +1,23 @@
+{
+	"name": "transmitter"
+	, "version": "0.0.1"
+	, "description": "notihub notification transmitter"
+	, "keywords": []
+	, "author": "hidden <zzdhidden@gmail.com>"
+	, "dependencies": {
+		, "optimist": "0.2.6"
+		, "colors": "0.5.1" 
+		, "async": "0.1.10" 
+		, "mongoq": "0.1.2"
+	}
+	, "devDependencies": { 
+		"expresso": "0.9.0"
+		, "should": "0.3.1" 
+	}
+	, "main": "index"
+	, "engines": { "node": "0.4.x" }
+	, "scripts": { 
+		"start": "P=`ps ax | grep 'index.js -i transmitter' | grep -v grep | awk '{print $1}'`; if [ \"$P\" == \"\" ];then echo 'Start server'; `nohup node index.js -i transmitter >> logs/server.log 2>&1 &`; else echo 'Server has started';fi"
+		,"stop": "P=`ps ax | grep 'index.js -i transmitter' | grep -v grep | awk '{print $1}'`; if [ \"$P\" != \"\" ];then kill $P; echo 'Stop server'; else echo 'Server not found';fi"
+	}
+}
