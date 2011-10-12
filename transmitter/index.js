@@ -84,7 +84,7 @@ function send() {
 	var delay = 20*30*1000*60;
 	messages.find({ 
 		sent: { $exists: false } 
-		, createAt: { $gt: new Date(Date.now() - delay) }
+		, createdAt: { $gt: new Date(Date.now() - delay) }
 	}).sort({_id: 1}).toArray(function(err, msgs) {
 		if( !err && msgs && msgs.length ) {
 			async.forEachSeries(msgs, function(message, cb) {
