@@ -84,6 +84,7 @@ function send() {
 	var delay = 20*30*1000*60;
 	messages.find({ 
 		sent: { $exists: false } 
+		, "type": "notification"
 		, createdAt: { $gt: new Date(Date.now() - delay) }
 	}).sort({_id: 1}).toArray(function(err, msgs) {
 		if( !err && msgs && msgs.length ) {
@@ -94,7 +95,7 @@ function send() {
 						docs.forEach(function(client) {
 							if(client.type == "ios" ){
 								toApns(client.token, msg);
-							}else if(client.type == "andriod"){
+							}else if(client.type == "android"){
 								mq.publish(client.token, msg);
 							}
 						});
