@@ -17,7 +17,7 @@
 	, "main": "index"
 	, "engines": { "node": "0.4.x" }
 	, "scripts": { 
-		"start": "P=`ps ax | grep 'index.js -i transmitter' | grep -v grep | awk '{print $1}'`; if [ \"$P\" == \"\" ];then echo 'Start server'; `nohup node index.js -i transmitter >> logs/server.log 2>&1 &`; else echo 'Server has started';fi"
+		"start": "P=`ps ax | grep 'index.js -i transmitter' | grep -v grep | awk '{print $1}'`; if [ \"$P\" == \"\" ];then echo 'Start server'; `NODE_ENV=development nohup node index.js -i transmitter >> logs/server.log 2>&1 &`; else echo 'Server has started';fi"
 		,"stop": "P=`ps ax | grep 'index.js -i transmitter' | grep -v grep | awk '{print $1}'`; if [ \"$P\" != \"\" ];then kill $P; echo 'Stop server'; else echo 'Server not found';fi"
 	}
 }
