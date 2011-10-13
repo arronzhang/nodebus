@@ -1,6 +1,6 @@
 
 upstream notihub_mobile {
-	server 127.0.0.1:6001;
+	server 127.0.0.1:6101;
 }
 
 server {
@@ -78,7 +78,7 @@ server {
 }
 
 upstream notihub_api {
-	server 127.0.0.1:6101;
+	server 127.0.0.1:6201;
 }
 
 server {
