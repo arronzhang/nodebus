@@ -5,7 +5,7 @@
 	, "keywords": []
 	, "author": "hidden <zzdhidden@gmail.com>"
 	, "dependencies": {
-		, "optimist": "0.2.6"
+		"optimist": "0.2.6"
 		, "colors": "0.5.1" 
 		, "async": "0.1.10" 
 		, "mongoq": "0.1.2"
