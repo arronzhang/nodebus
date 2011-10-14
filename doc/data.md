@@ -44,7 +44,6 @@ updatedAt		|Date		|创建时间
 login			|String		|节点
 secret			|String		|密钥
 name			|String		|节点名称
-emailKey		|String		|节点pushmail账号密码
 userId			|ObjectID	|该节点用户id
 createdAt		|Date		|创建时间
 updatedAt		|Date		|更新时间
