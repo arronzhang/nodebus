@@ -40,10 +40,13 @@ set mailserver localhost port 25
 ## are expanded on runtime. For example to override the sender:
 #
 # 简单的，这只改了一下发送人，有需要可以自己修改其它内容。
-set mail-format { from: zzdhidden@gmail.com }
-
+set mail-format { 
+     from: zzdhidden@gmail.com
+     subject:  $EVENT $SERVICE
+     message:  $ACTION $EVENT Service $SERVICE $DESCRIPTION $DATE
+}
 # 设置邮件通知接收者。建议发到gmail，方便邮件过滤。
-set alert user.defaut-public@push.notihub.com
+set alert hidden.monit-f2FOXNp0@push.notihub.com
 
 set httpd port 2812 and            # 设置http监控页面的端口
      use address localhost   # http监控页面的IP或域名
