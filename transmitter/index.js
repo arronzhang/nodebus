@@ -89,7 +89,8 @@ function send() {
 	}).sort({_id: 1}).toArray(function(err, msgs) {
 		if( !err && msgs && msgs.length ) {
 			async.forEachSeries(msgs, function(message, cb) {
-				var msg = truncate( message.nodeName + " - " + message.msg );
+				var msg = (message.title || message.msg || "");
+				msg = truncate( message.nodeName + " - " + msg );
 				clients.find({userId: message.userId}).toArray(function(err, docs) {
 					if( !err && docs && docs.length ) {
 						docs.forEach(function(client) {
