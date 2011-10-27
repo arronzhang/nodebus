@@ -9,9 +9,16 @@ server {
 	rewrite ^(.*) http://m.notihub.com permanent;
 }
 
+
+server {
+	listen       80;
+	server_name  nodehub.cn *.nodehub.cn;
+	rewrite ^(.*) http://m.nodehub.cn permanent;
+}
+
 server {
 	listen 80;
-	server_name m.notihub.com;
+	server_name m.notihub.com m.nodehub.cn;
 	access_log  /var/log/nginx/m.notihub.com.access.log;
 	root /opt/notihub/m.notihub.com/static;
 
@@ -84,7 +91,7 @@ upstream notihub_api {
 server {
 
 	listen 80;
-	server_name api.notihub.com;
+	server_name api.notihub.com api.nodehub.cn;
 	access_log  /var/log/nginx/api.notihub.com.access.log;
 	root /opt/notihub/api.notihub.com/static;
 
@@ -128,7 +135,7 @@ upstream notihub_monit {
 server {
 
 	listen 80;
-	server_name monit.notihub.com;
+	server_name monit.notihub.com monit.nodehub.cn;
 	access_log  /var/log/nginx/monit.notihub.com.access.log;
 	root /opt/notihub/m.notihub.com/static;
 
