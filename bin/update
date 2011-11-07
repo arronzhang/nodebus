@@ -10,5 +10,7 @@ cd ${ROOT_PATH}/push.notihub.com
 git pull
 cd ${ROOT_PATH}/m.notihub.com
 git pull
+cd ${ROOT_PATH}/www.notihub.com
+git pull
 cd ${ROOT_PATH}
 git pull
