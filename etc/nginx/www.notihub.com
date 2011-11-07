@@ -10,19 +10,19 @@ upstream notihub_web {
 server {
 	listen       80;
 	server_name  notihub.com *.notihub.com;
-	rewrite ^(.*) http://m.notihub.com permanent;
+	rewrite ^(.*) http://www.notihub.com permanent;
 }
 
 
 server {
 	listen       80;
 	server_name  nodehub.cn *.nodehub.cn;
-	rewrite ^(.*) http://m.nodehub.cn permanent;
+	rewrite ^(.*) http://www.nodehub.cn permanent;
 }
 
 server {
 	listen 80;
-	server_name www.notihub.com www.nodehub.cn;
+	server_name w.notihub.com www.notihub.com www.nodehub.cn;
 	access_log  /var/log/nginx/www.notihub.com.access.log;
 	root /opt/notihub/www.notihub.com/static;
 
