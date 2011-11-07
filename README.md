@@ -28,6 +28,7 @@ Services
 *	mongodb			127.0.0.1:27017	
 *	m.notihub.com   	127.0.0.1:6101	
 *	api.notihub.com 	127.0.0.1:6201	
+*	www.notihub.com 	127.0.0.1:6301	
 *	push.notihub.com	0.0.0.0:25		mail server
 *	mqtt.notihub.com	0.0.0.0:1883		mosquitto	
 
