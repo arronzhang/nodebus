@@ -1,0 +1,16 @@
+#!/bin/sh
+
+ROOT_PATH=$(dirname "$(cd "$(dirname "$0")"; pwd)")
+
+echo Notihub root path: ${ROOT_PATH}
+
+cd ${ROOT_PATH}/api.notihub.com
+npm stop
+cd ${ROOT_PATH}/push.notihub.com
+npm stop
+cd ${ROOT_PATH}/m.notihub.com
+npm stop
+cd ${ROOT_PATH}/www.notihub.com
+npm stop
+cd ${ROOT_PATH}/transmitter
+npm stop
