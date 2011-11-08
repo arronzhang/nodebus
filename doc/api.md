@@ -61,8 +61,8 @@ msg			|String		|消息内容
 type			|String		|消息类型[notification,status]
 createdAt		|Date		|创建时间
 uri			|String		|消息uri
-nodeLogin		|String		|消息所属node的登录账号
-nodeName		|String		|消息所属node的名称
+nodeName		|String		|消息所属node的登录账号
+nodeLabel		|String		|消息所属node的标签
 
 
 GET /statuses
