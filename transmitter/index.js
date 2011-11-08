@@ -90,8 +90,8 @@ function send() {
 		if( !err && msgs && msgs.length ) {
 			async.forEachSeries(msgs, function(message, cb) {
 				var msg = (message.title || message.msg || "");
-				msg = truncate( message.nodeName + " - " + msg );
-				clients.find({userId: message.userId}).toArray(function(err, docs) {
+				msg = truncate( message.nodeLabel + " - " + msg );
+				clients.find({userLogin: message.userLogin}).toArray(function(err, docs) {
 					if( !err && docs && docs.length ) {
 						docs.forEach(function(client) {
 							if(client.type == "ios" ){
