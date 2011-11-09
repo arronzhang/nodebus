@@ -13,7 +13,7 @@ set logfile /var/log/monit.log
 #
 #set mailserver mail.example.com
 set mailserver localhost port 25           
-#set mailserver push.notihub.com port 25           
+#set mailserver push.nodebus.com port 25           
 
 # 
 # 通知邮件的格式设置，下面是默认格式供参考
@@ -46,7 +46,7 @@ set mail-format {
      message:  $ACTION $EVENT Service $SERVICE $DESCRIPTION $DATE
 }
 # 设置邮件通知接收者。建议发到gmail，方便邮件过滤。
-set alert hidden.monit-f2FOXNp0@push.notihub.com
+set alert hidden.monit-f2FOXNp0@push.nodebus.com
 
 set httpd port 2812 and            # 设置http监控页面的端口
      use address localhost   # http监控页面的IP或域名
@@ -64,4 +64,4 @@ set httpd port 2812 and            # 设置http监控页面的端口
 #
 # 系统名称，可以是IP或域名
 
-include /opt/notihub/etc/monit/conf.d/*
+include /opt/nodebus/etc/monit/conf.d/*

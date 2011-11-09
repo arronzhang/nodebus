@@ -1,7 +1,7 @@
 
-# notihub transmitter
+# nodebus transmitter
 
-  notihub notification transmitter
+  nodebus notification transmitter
 
 ## License 
 

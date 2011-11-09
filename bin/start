@@ -4,13 +4,11 @@ ROOT_PATH=$(dirname "$(cd "$(dirname "$0")"; pwd)")
 
 echo Notihub root path: ${ROOT_PATH}
 
-cd ${ROOT_PATH}/api.notihub.com
+cd ${ROOT_PATH}/api
 npm start
-cd ${ROOT_PATH}/push.notihub.com
+cd ${ROOT_PATH}/push
 npm start
-cd ${ROOT_PATH}/m.notihub.com
-npm start
-cd ${ROOT_PATH}/www.notihub.com
+cd ${ROOT_PATH}/web
 npm start
 cd ${ROOT_PATH}/transmitter
 npm start

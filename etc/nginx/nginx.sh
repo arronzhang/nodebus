@@ -1,3 +1,3 @@
 #!/bin/sh
-cp www.notihub.com /etc/nginx/sites-enabled/www.notihub.com
+cp www.nodebus.com /etc/nginx/sites-enabled/www.nodebus.com
 service nginx reload

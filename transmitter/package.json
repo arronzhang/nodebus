@@ -1,7 +1,7 @@
 {
 	"name": "transmitter"
 	, "version": "0.0.1"
-	, "description": "notihub notification transmitter"
+	, "description": "nodebus notification transmitter"
 	, "keywords": []
 	, "author": "hidden <zzdhidden@gmail.com>"
 	, "dependencies": {

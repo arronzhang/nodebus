@@ -8,7 +8,7 @@ var env = process.env.NODE_ENV || 'development'
 
 /** db */
 /** db */
-var dbUrl = "mongodb:\/\/localhost/notihub"
+var dbUrl = "mongodb:\/\/localhost/nodebus"
 , db = mongoq(dbUrl)
 , users = db.collection("users")
 , nodes = db.collection("nodes")
@@ -43,7 +43,7 @@ function toApns (token, msg) {
 	note.badge = 1;
 	note.sound = "default";
 	note.alert = msg;
-	note.payload = {'messageFrom': 'notihub'};
+	note.payload = {'messageFrom': 'nodebus'};
 	note.device = device;
 	apnsConnection.sendNotification(note);
 }

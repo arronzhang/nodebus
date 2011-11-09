@@ -1,0 +1,11 @@
+# m h dom mon dow user	command
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+#每天早上8:20生成sitemap.xml
+#20 8 * * * root cd /opt/nodebus.com/web && NODE_ENV=production jake -f task/sitemap.js build >> /var/log/cron.nodebus.log
+#每天早上4:20重启collect
+#20 4 * * * root cd /opt/nodebus.com && sh collectctl restart >> /var/log/cron.nodebus.log
+
+

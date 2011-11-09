@@ -1,3 +1,3 @@
 #!/bin/sh
-cp crontab.notihub /etc/cron.d/notihub
+cp crontab.nodebus /etc/cron.d/nodebus
 service cron reload

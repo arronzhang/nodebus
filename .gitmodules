@@ -1,18 +1,1 @@
-[submodule "api.notihub.com"]
-	path = api.notihub.com
-	url = git@notihub.unfuddle.com:notihub/notihub-api.git
-[submodule "inotihub"]
-	path = inotihub
-	url = git@notihub.unfuddle.com:notihub/inotihub.git
-[submodule "push.notihub.com"]
-	path = push.notihub.com
-	url = git@notihub.unfuddle.com:notihub/notihub-push.git
-[submodule "m.notihub.com"]
-	path = m.notihub.com
-	url = git@notihub.unfuddle.com:notihub/notihub-mweb.git
-[submodule "notihub-andriod"]
-	path = notihub-andriod
-	url = git@notihub.unfuddle.com:notihub/notihub-andriod.git
-[submodule "www.notihub.com"]
-	path = www.notihub.com
-	url = git@notihub.unfuddle.com:notihub/notihub-web.git
+

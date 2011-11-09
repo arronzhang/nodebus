@@ -1,30 +1,23 @@
 
-upstream notihub_mobile {
+upstream nodebus_mobile {
+	server 127.0.0.1:6111;
+}
+
+upstream nodebus_web {
 	server 127.0.0.1:6101;
 }
 
-upstream notihub_web {
-	server 127.0.0.1:6301;
-}
-
 server {
 	listen       80;
-	server_name  notihub.com *.notihub.com;
-	rewrite ^(.*) http://www.notihub.com permanent;
-}
-
-
-server {
-	listen       80;
-	server_name  nodehub.cn *.nodehub.cn;
-	rewrite ^(.*) http://www.nodehub.cn permanent;
+	server_name  nodebus.com *.nodebus.com;
+	rewrite ^(.*) http://www.nodebus.com permanent;
 }
 
 server {
 	listen 80;
-	server_name w.notihub.com www.notihub.com www.nodehub.cn;
-	access_log  /var/log/nginx/www.notihub.com.access.log;
-	root /opt/notihub/www.notihub.com/static;
+	server_name w.nodebus.com www.nodebus.com;
+	access_log  /var/log/nginx/www.nodebus.com.access.log;
+	root /opt/nodebus/web/static;
 
 	client_header_buffer_size 256k;
 	large_client_header_buffers 4 256k;
@@ -38,13 +31,13 @@ server {
 	error_page  404 /404.html;
 
 	location /404.html {
-		root /opt/notihub/www.notihub.com/static;
+		root /opt/nodebus/web/static;
 	}
 
 	error_page 500 502 503 504 /500.html;
 
 	location /500.html {
-		root /opt/notihub/www.notihub.com/static;
+		root /opt/nodebus/web/static;
 	}
 
 	location /get-status {
@@ -53,25 +46,25 @@ server {
 	}
 
 	location /(favicon.ico|robots.txt) {
-		root /opt/notihub/www.notihub.com/static;
+		root /opt/nodebus/web/static;
 		access_log  off;
 		expires 30d;
 	}
 
 	location ~ ^/?(images|js|css)/ {
-		root /opt/notihub/www.notihub.com/static;
+		root /opt/nodebus/web/static;
 		access_log  off;
 		expires 30d;
 	}
 
 	location ~* ^.+\.(html|htm|xhtml)$ {
-		root /opt/notihub/www.notihub.com/static;
+		root /opt/nodebus/web/static;
 		access_log off;
 		expires 30d;
 	}
 
 	location / {
-		proxy_pass http://notihub_web;
+		proxy_pass http://nodebus_web;
 		proxy_redirect          off;
 		proxy_set_header        Host $host:$proxy_port;
 		proxy_set_header        X-Real-IP $remote_addr;
@@ -90,9 +83,9 @@ server {
 
 server {
 	listen 80;
-	server_name m.notihub.com m.nodehub.cn;
-	access_log  /var/log/nginx/m.notihub.com.access.log;
-	root /opt/notihub/m.notihub.com/static;
+	server_name m.nodebus.com;
+	access_log  /var/log/nginx/m.nodebus.com.access.log;
+	root /opt/nodebus/web/static;
 
 	client_header_buffer_size 256k;
 	large_client_header_buffers 4 256k;
@@ -106,13 +99,13 @@ server {
 	error_page  404 /404.html;
 
 	location /404.html {
-		root /opt/notihub/m.notihub.com/static;
+		root /opt/nodebus/web/static;
 	}
 
 	error_page 500 502 503 504 /500.html;
 
 	location /500.html {
-		root /opt/notihub/m.notihub.com/static;
+		root /opt/nodebus/web/static;
 	}
 
 	location /get-status {
@@ -121,25 +114,25 @@ server {
 	}
 
 	location /(favicon.ico|robots.txt) {
-		root /opt/notihub/m.notihub.com/static;
+		root /opt/nodebus/web/static;
 		access_log  off;
 		expires 30d;
 	}
 
 	location ~ ^/?(images|js|css)/ {
-		root /opt/notihub/m.notihub.com/static;
+		root /opt/nodebus/web/static;
 		access_log  off;
 		expires 30d;
 	}
 
 	location ~* ^.+\.(html|htm|xhtml)$ {
-		root /opt/notihub/m.notihub.com/static;
+		root /opt/nodebus/web/static;
 		access_log off;
 		expires 30d;
 	}
 
 	location / {
-		proxy_pass http://notihub_mobile;
+		proxy_pass http://nodebus_mobile;
 		proxy_redirect          off;
 		proxy_set_header        Host $host:$proxy_port;
 		proxy_set_header        X-Real-IP $remote_addr;
@@ -156,16 +149,16 @@ server {
 	}
 }
 
-upstream notihub_api {
+upstream nodebus_api {
 	server 127.0.0.1:6201;
 }
 
 server {
 
 	listen 80;
-	server_name api.notihub.com api.nodehub.cn;
-	access_log  /var/log/nginx/api.notihub.com.access.log;
-	root /opt/notihub/api.notihub.com/static;
+	server_name api.nodebus.com api.nodehub.cn;
+	access_log  /var/log/nginx/api.nodebus.com.access.log;
+	root /opt/nodebus/api/static;
 
 	client_header_buffer_size 256k;
 	large_client_header_buffers 4 256k;
@@ -177,13 +170,13 @@ server {
 	charset utf-8;
 
 	location /(favicon.ico|robots.txt) {
-		root /opt/notihub/m.notihub.com/static;
+		root /opt/nodebus/web/static;
 		access_log  off;
 		expires 30d;
 	}
 
 	location / {
-		proxy_pass http://notihub_api;
+		proxy_pass http://nodebus_api;
 		proxy_redirect          off;
 		proxy_set_header        Host $host:$proxy_port;
 		proxy_set_header        X-Real-IP $remote_addr;
@@ -200,16 +193,16 @@ server {
 	}
 }
 
-upstream notihub_monit {
+upstream nodebus_monit {
 	server 127.0.0.1:2812;
 }
 
 server {
 
 	listen 80;
-	server_name monit.notihub.com monit.nodehub.cn;
-	access_log  /var/log/nginx/monit.notihub.com.access.log;
-	root /opt/notihub/m.notihub.com/static;
+	server_name monit.nodebus.com monit.nodehub.cn;
+	access_log  /var/log/nginx/monit.nodebus.com.access.log;
+	root /opt/nodebus/web/static;
 
 	client_header_buffer_size 256k;
 	large_client_header_buffers 4 256k;
@@ -221,13 +214,13 @@ server {
 	charset utf-8;
 
 	location /(favicon.ico|robots.txt) {
-		root /opt/notihub/m.notihub.com/static;
+		root /opt/nodebus/web/static;
 		access_log  off;
 		expires 30d;
 	}
 
 	location / {
-		proxy_pass http://notihub_monit;
+		proxy_pass http://nodebus_monit;
 		proxy_redirect          off;
 		proxy_set_header        Host $host:$proxy_port;
 		proxy_set_header        X-Real-IP $remote_addr;
