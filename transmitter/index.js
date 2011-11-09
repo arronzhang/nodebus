@@ -8,7 +8,7 @@ var env = process.env.NODE_ENV || 'development'
 
 /** db */
 /** db */
-var dbUrl = "mongodb:\/\/localhost/nodebus"
+var dbUrl = "mongodb:\/\/localhost:27200/nodebus"
 , db = mongoq(dbUrl)
 , users = db.collection("users")
 , nodes = db.collection("nodes")
@@ -91,7 +91,7 @@ function send() {
 			async.forEachSeries(msgs, function(message, cb) {
 				var msg = (message.title || message.msg || "");
 				msg = truncate( message.nodeLabel + " - " + msg );
-				clients.find({userLogin: message.userLogin}).toArray(function(err, docs) {
+				clients.find({user: message.user}).toArray(function(err, docs) {
 					if( !err && docs && docs.length ) {
 						docs.forEach(function(client) {
 							if(client.type == "ios" ){
