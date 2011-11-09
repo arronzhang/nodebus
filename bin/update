@@ -5,10 +5,13 @@ ROOT_PATH=$(dirname "$(cd "$(dirname "$0")"; pwd)")
 echo Notihub root path: ${ROOT_PATH}
 
 cd ${ROOT_PATH}/api
+git checkout master
 git pull
 cd ${ROOT_PATH}/push
+git checkout master
 git pull
 cd ${ROOT_PATH}/web
+git checkout master
 git pull
 cd ${ROOT_PATH}
 git pull
