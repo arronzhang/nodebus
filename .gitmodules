@@ -1,1 +1,10 @@
 
+[submodule "web"]
+	path = web
+	url = https://nodebus:imnodebus@bitbucket.org/nodebus/nodebus-web.git
+[submodule "api"]
+	path = api
+	url = https://nodebus:imnodebus@bitbucket.org/nodebus/nodebus-api.git
+[submodule "push"]
+	path = push
+	url = https://nodebus:imnodebus@bitbucket.org/nodebus/nodebus-push.git
