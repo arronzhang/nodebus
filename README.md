@@ -16,7 +16,7 @@ Services
 
 *	monit
 *	nginx
-*	mongodb			127.0.0.1:27017	
+*	mongodb			127.0.0.1:27200	
 *	www.nodebus.com 	127.0.0.1:6101	
 *	m.nodebus.com   	127.0.0.1:6111	
 *	api.nodebus.com 	127.0.0.1:6201	
