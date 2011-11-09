@@ -5,10 +5,10 @@ ROOT_PATH=$(dirname "$(cd "$(dirname "$0")"; pwd)")
 echo Notihub root path: ${ROOT_PATH}
 
 cd ${ROOT_PATH}/api
-npm install .
+npm install . --production
 cd ${ROOT_PATH}/push
-npm install .
+npm install . --production
 cd ${ROOT_PATH}/web
-npm install .
+npm install . --production
 cd ${ROOT_PATH}/transmitter
-npm install .
+npm install . --production
