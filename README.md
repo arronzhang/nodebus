@@ -6,12 +6,18 @@ domain: nodebus.com
 Download
 ---------------------------
  
->	git clone https://nodebus:imnodebus@bitbucket.org/nodebus/nodebus.git --recursive
+>	git clone git@github.com:zzdhidden/nodebus.git --recursive
+>
 >	cd nodebus
+>
 >	sh ./bin/update
+>
 >	sh ./bin/install
+>
 >	cd web
+>
 >	node index.js
+>
 >	#curl http://localhost:3000
 
 
