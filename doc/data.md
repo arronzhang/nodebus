@@ -41,7 +41,7 @@ updatedAt		|Date		|创建时间
 属性			|类型		|描述	
 ------------------------|---------------|-----------
 \_id			|ObjectID	|\_id
-name			|String		|节点
+name			|String		|节点 login.XXXX
 apikey			|String		|密钥
 label			|String		|节点名称
 user			|String		|该节点用户账号
@@ -60,11 +60,12 @@ msg			|String		|消息内容
 node			|String		|消息所属节点名称
 nodeLabel		|String		|消息所属节点标签
 user			|String		|消息所属用户登录账号
-userName		|String		|消息所属用户名称
+users			|Array		|消息所属用户
 type			|String		|消息类型[notification,status]
 createdAt		|Date		|创建时间
 updatedAt		|Date		|更新时间
 uri			|String		|消息uri
 title			|String		|消息title
 severity		|
+
 
