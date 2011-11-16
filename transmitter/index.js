@@ -7,13 +7,13 @@ var env = process.env.NODE_ENV || 'development'
 
 
 /** db */
-/** db */
-var dbUrl = "mongodb:\/\/localhost:27200/nodebus"
-, db = mongoq(dbUrl)
-, users = db.collection("users")
-, nodes = db.collection("nodes")
-, clients = db.collection("clients")
-, messages = db.collection("messages");
+var db = require(__dirname + "/../web/db.js")
+, users = db.users
+, session = db.session
+, nodes = db.nodes
+, roster = db.roster
+, messages = db.messages
+, clients = db.clients;
 
 /* apns config */
 var apnsOptions = { 
@@ -91,7 +91,7 @@ function send() {
 			async.forEachSeries(msgs, function(message, cb) {
 				var msg = (message.title || message.msg || "");
 				msg = truncate( message.nodeLabel + " - " + msg );
-				clients.find({user: message.user}).toArray(function(err, docs) {
+				clients.find({user: { "$in": message.users }}).toArray(function(err, docs) {
 					if( !err && docs && docs.length ) {
 						docs.forEach(function(client) {
 							if(client.type == "ios" ){
