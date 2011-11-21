@@ -16,6 +16,8 @@ Download
 >
 >	cd web
 >
+>	#Please start mongod at port 27200
+>
 >	node index.js
 >
 >	#curl http://localhost:3000
