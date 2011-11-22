@@ -68,4 +68,30 @@ uri			|String		|消息uri
 title			|String		|消息title
 severity		|
 
+队列queue
+---------------------------------
+
+###options
+
+	{
+		capped: true
+		, max: 4096
+		, size: 4096 * 8192
+		, autoIndexId: true
+	}
+
+###Indexes
+
+	({out:1, type: 1, ts: 1});
+
+
+###字段说明
+
+属性			|类型		|描述	
+------------------------|---------------|-----------
+\_id			|ObjectID	|\_id
+out			|Boolean	|消息是否已取出
+type			|String		|队列消息类型
+msg			|Object		|队列消息内容
+ts			|Date		|消息创建时间
 
