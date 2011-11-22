@@ -3,7 +3,7 @@
 *This is a simple MQTT cient on node.js
 *Author: Fan Yilun @CEIT @14 FEB 2011
 */
-var sys = require('sys');
+var util = require('util');
 var net = require('net');
 var EventEmitter = require('events').EventEmitter;
 
@@ -36,10 +36,10 @@ function MQTTClient(port, host, clientID) {
 
 	self.conn.addListener('data', function (data) {
 		if(!self.sessionOpened){
-			//sys.puts("len:"+data.length+' @3:'+data.charCodeAt(3)+'\n');
+			//util.log("len:"+data.length+' @3:'+data.charCodeAt(3)+'\n');
 			if(data.length==4 && data.charCodeAt(3)==0){
 				self.sessionOpened = true;
-				sys.puts("Session opend\n");
+				util.log("Session opend\n");
 				self.emit("sessionOpened");
 
 				//reset timer
@@ -55,7 +55,7 @@ function MQTTClient(port, host, clientID) {
 				return;
 			}
 		} else {
-			//sys.puts('len:' + data.length+' Data received:'+data+'\n');
+			//util.log('len:' + data.length+' Data received:'+data+'\n');
 			if(data.length > 2){
 				var buf = new Buffer(data);
 				self.onData(buf);
@@ -64,7 +64,7 @@ function MQTTClient(port, host, clientID) {
 	});
 
 	self.conn.addListener('connect', function () {
-		//sys.puts('connected\n');
+		//util.log('connected\n');
 		self.connected = true;
 		//Once connected, send open stream to broker
 		self.openSession(self.id);
@@ -74,22 +74,22 @@ function MQTTClient(port, host, clientID) {
 		self.connected = false;
 		self.sessionSend = false;
 		self.sessionOpened = false;
-		sys.puts('Connection closed by broker');
+		util.log('Connection closed by broker');
 	});
 }
 
-sys.inherits(MQTTClient, EventEmitter);
+util.inherits(MQTTClient, EventEmitter);
 exports.MQTTClient = MQTTClient;
 
 MQTTClient.prototype.timeUp = function(){
 	if(this.connected && this.sessionOpened){
-		//sys.puts('25s keep alive');
+		//util.log('25s keep alive');
 		this.live();
 	} else if (!this.connected ){
-		sys.puts('MQTT connect to server time out');
+		util.log('MQTT connect to server time out');
 		this.emit("connectTimeOut");
 	} else {
-		sys.puts('Unknow state');
+		util.log('Unknow state');
 	}
 };
 
@@ -123,11 +123,11 @@ MQTTClient.prototype.openSession = function (id) {
 		buffer[i++] = id.charCodeAt(n); //Convert string to utf8
 	}
 
-	//sys.puts(buffer.toString('utf8',0, 16)+'  '+buffer.length);
+	//util.log(buffer.toString('utf8',0, 16)+'  '+buffer.length);
 	this.conn.write(buffer, encoding="ascii");
 
 	this.sessionSend = true;
-	sys.puts('Connected as :'+id+'\n');
+	util.log('Connected as :'+id+'\n');
 
 	//publish('node', 'here is nodejs');
 	//this.subscribe('mirror');
@@ -157,9 +157,9 @@ MQTTClient.prototype.subscribe = function (sub_topic) {
 		}
 		buffer[i++] = 0x00;
 
-		//sys.puts(7+sub_topic.length);
-		sys.puts('Subcribe to:'+sub_topic);
-		//sys.puts("Subscribe send len:"+buffer.length+'\n');
+		//util.log(7+sub_topic.length);
+		util.log('Subcribe to:'+sub_topic);
+		//util.log("Subscribe send len:"+buffer.length+'\n');
 
 		this.conn.write(buffer, encoding="ascii");
 
@@ -205,7 +205,7 @@ MQTTClient.prototype.publish = function (pub_topic, payload) {
 			buffer[i++] = payload[n];
 		}
 
-		sys.puts("||Publish|| "+pub_topic+' : '+payload);
+		util.log("||Publish|| "+pub_topic+' : '+payload);
 
 		this.conn.write(buffer, encoding="ascii");
 
@@ -220,10 +220,10 @@ MQTTClient.prototype.publish = function (pub_topic, payload) {
 
 MQTTClient.prototype.onData = function(data){
 	var type = data[0]>>4;
-	//sys.puts('\ntype:'+type);
-	//sys.puts('1:'+data[1]);
-	//sys.puts('2:'+data[2]);
-	//sys.puts('3:'+data[3]);
+	//util.log('\ntype:'+type);
+	//util.log('1:'+data[1]);
+	//util.log('2:'+data[2]);
+	//util.log('3:'+data[3]);
 	if (type == 3) { // PUBLISH
 		var tl = data[3]+data[2]; //<<4
 		var topic = new Buffer(tl);
@@ -232,13 +232,13 @@ MQTTClient.prototype.onData = function(data){
 		}
 		if(tl+4 <= data.length){
 			var payload = data.slice(tl+4, data.length);
-			sys.puts("Receive on Topic:"+topic);
-			sys.puts("Payload:"+payload+'\n');
+			util.log("Receive on Topic:"+topic);
+			util.log("Payload:"+payload+'\n');
 			this.emit("mqttData", topic, payload);
 		}
 	} else if (type == 12) { // PINGREG -- Ask for alive
 		//Send [208, 0] to server
-		sys.puts('Send 208 0');
+		util.log('Send 208 0');
 		var packet208 = new Buffer(2);
 		packet208[0] = 0xd0;
 		packet208[1] = 0x00;

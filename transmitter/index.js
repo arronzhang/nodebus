@@ -14,7 +14,6 @@ var db = require(__dirname + "/../web/db.js")
 , roster = db.roster
 , messages = db.messages
 , clients = db.clients;
-
 /* apns config */
 var apnsOptions = { 
 	cert: __dirname + '/config/cert-dev.pem' /* Certificate file */
@@ -86,24 +85,30 @@ function send() {
 		sent: { $exists: false } 
 		, "type": "notification"
 		, createdAt: { $gt: new Date(Date.now() - delay) }
-	}).sort({_id: 1}).toArray(function(err, msgs) {
+	}).sort({_id: 1}).limit(10).toArray(function(err, msgs) {
 		if( !err && msgs && msgs.length ) {
 			async.forEachSeries(msgs, function(message, cb) {
 				var msg = (message.title || message.msg || "");
 				msg = truncate( message.nodeLabel + " - " + msg );
-				clients.find({user: { "$in": message.users }}).toArray(function(err, docs) {
-					if( !err && docs && docs.length ) {
-						docs.forEach(function(client) {
-							if(client.type == "ios" ){
-								toApns(client.token, msg);
-							}else if(client.type == "android"){
-								mq.publish(client.token, msg);
+				if( message.node ){
+					nodes.users(message.node, function(err, docs) {
+						clients.find({user: docs.length ? {"$in": docs.map(function(n){return n.login}) } : null}).toArray(function(err, docs) {
+							if( !err && docs && docs.length ) {
+								docs.forEach(function(client) {
+									if(client.type == "ios" ){
+										toApns(client.token, msg);
+									}else if(client.type == "android"){
+										mq.publish(client.token, msg);
+									}
+								});
 							}
+							messages.update({_id: message._id}, {$set: {sent: true}});
+							cb();
 						});
-					}
-					messages.update({_id: message._id}, {$set: {sent: true}});
+					});
+				} else {
 					cb();
-				});
+				}
 			}, function() {
 				delaySend(500);
 			});
