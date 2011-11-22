@@ -1,7 +1,6 @@
 
 var env = process.env.NODE_ENV || 'development'
 , mqtt = require("./lib/MQTTClient.js")
-, mongoq = require("mongoq")
 , async = require("async")
 , apns = require("./lib/apn.js");
 
