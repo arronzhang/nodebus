@@ -47,6 +47,8 @@ label			|String		|节点名称
 user			|String		|该节点用户账号
 createdAt		|Date		|创建时间
 updatedAt		|Date		|更新时间
+presence		|String		|available, unavailable
+show			|String		|
 
 消息messages
 ---------------------------------
@@ -66,7 +68,7 @@ createdAt		|Date		|创建时间
 updatedAt		|Date		|更新时间
 uri			|String		|消息uri
 title			|String		|消息title
-severity		|
+severity		|Integer	|0:ok, 1:info, 2:warning, 3: critical, -1: unknown
 
 队列queue
 ---------------------------------
