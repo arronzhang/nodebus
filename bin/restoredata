@@ -1,0 +1,2 @@
+#!/bin/sh
+mongorestore --port 27200 -d nodebus --drop data/nodebus

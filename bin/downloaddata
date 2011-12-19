@@ -1,0 +1,2 @@
+#!/bin/sh
+scp -r root@nodebus.com:/opt/nodebus/data data
