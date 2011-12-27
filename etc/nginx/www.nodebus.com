@@ -17,7 +17,7 @@ server {
 	listen 80;
 	server_name w.nodebus.com www.nodebus.com;
 	access_log  /var/log/nginx/www.nodebus.com.access.log;
-	root /opt/nodebus/web/static;
+	root /opt/nodebus/web/public;
 
 	client_header_buffer_size 256k;
 	large_client_header_buffers 4 256k;
@@ -31,13 +31,13 @@ server {
 	error_page  404 /404.html;
 
 	location /404.html {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 	}
 
 	error_page 500 502 503 504 /500.html;
 
 	location /500.html {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 	}
 
 	location /get-status {
@@ -46,19 +46,19 @@ server {
 	}
 
 	location /(favicon.ico|robots.txt) {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 		access_log  off;
 		expires 30d;
 	}
 
 	location ~ ^/?(images|js|css)/ {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 		access_log  off;
 		expires 30d;
 	}
 
 	location ~* ^.+\.(html|htm|xhtml)$ {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 		access_log off;
 		expires 30d;
 	}
@@ -85,7 +85,7 @@ server {
 	listen 80;
 	server_name m.nodebus.com;
 	access_log  /var/log/nginx/m.nodebus.com.access.log;
-	root /opt/nodebus/web/static;
+	root /opt/nodebus/web/public;
 
 	client_header_buffer_size 256k;
 	large_client_header_buffers 4 256k;
@@ -99,13 +99,13 @@ server {
 	error_page  404 /404.html;
 
 	location /404.html {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 	}
 
 	error_page 500 502 503 504 /500.html;
 
 	location /500.html {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 	}
 
 	location /get-status {
@@ -114,19 +114,19 @@ server {
 	}
 
 	location /(favicon.ico|robots.txt) {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 		access_log  off;
 		expires 30d;
 	}
 
 	location ~ ^/?(images|js|css)/ {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 		access_log  off;
 		expires 30d;
 	}
 
 	location ~* ^.+\.(html|htm|xhtml)$ {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 		access_log off;
 		expires 30d;
 	}
@@ -158,7 +158,7 @@ server {
 	listen 80;
 	server_name api.nodebus.com api.nodehub.cn;
 	access_log  /var/log/nginx/api.nodebus.com.access.log;
-	root /opt/nodebus/api/static;
+	root /opt/nodebus/api/public;
 
 	client_header_buffer_size 256k;
 	large_client_header_buffers 4 256k;
@@ -170,7 +170,7 @@ server {
 	charset utf-8;
 
 	location /(favicon.ico|robots.txt) {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 		access_log  off;
 		expires 30d;
 	}
@@ -202,7 +202,7 @@ server {
 	listen 80;
 	server_name monit.nodebus.com monit.nodehub.cn;
 	access_log  /var/log/nginx/monit.nodebus.com.access.log;
-	root /opt/nodebus/web/static;
+	root /opt/nodebus/web/public;
 
 	client_header_buffer_size 256k;
 	large_client_header_buffers 4 256k;
@@ -214,7 +214,7 @@ server {
 	charset utf-8;
 
 	location /(favicon.ico|robots.txt) {
-		root /opt/nodebus/web/static;
+		root /opt/nodebus/web/public;
 		access_log  off;
 		expires 30d;
 	}
