@@ -1,0 +1,7 @@
+.DS_Store
+node_modules
+*.sock
+*.swp
+logs/*.log
+logs/*.pid
+npm-debug.log

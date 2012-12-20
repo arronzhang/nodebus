@@ -1,0 +1,27 @@
+div.wrap
+  h1 及时的手机通知
+  p  Nodebus是一个面向开发者的手机通知应用，您可以在你的服务故障的时候通过
+    a(href="/api") nodebus api(http,email)
+    | 发送一个简单的消息到您的手机上，这样您可以及时处理服务故障。
+  ol
+    li 
+      a(href="/signup") 注册Nodebus账号
+    li 下载手机客户端并使用Nodebus账号登录 ( 
+      a(href="/images/nodebus-andriod-0.1.apk") android版
+      | , iphone版)
+    li 测试发送通知
+  h1 登录
+  form(method='POST', action="/login")
+    - if (errors && errors.length)
+      p.error!= errors.join("<br />")
+    p
+      label(for='login_login') 用户名
+      br
+      input#login_login(type='text', name='login', value=login)
+    p
+      label(for='login_password') 密码
+      br
+      input#login_password(type='password', name='password', value='')
+    p
+      input.button(type='submit', value='登录')
+

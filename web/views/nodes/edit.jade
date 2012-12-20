@@ -1,0 +1,12 @@
+h1 编辑节点
+- if (errors && errors.length)
+  .alert-message.error
+    p!= errors.join("<br />")
+form(method='POST', action="/"+node.user+"/"+node.name+"/update")
+  .clearfix
+    label(for='node_name') 节点名称
+    .input
+      input#node_name(type='text', name='label', value=node.label)
+  .actions
+    input.btn.primary(type='submit', value='确定')
+

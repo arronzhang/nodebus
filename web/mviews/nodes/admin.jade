@@ -1,0 +1,28 @@
+h1 管理节点
+  a.btn.small(href=nodePath(node)) &laquo;返回节点
+- if (errors && errors.length)
+  .alert-message.error
+    p!= errors.join("<br />")
+form(method='POST', action=nodePath(node, "admin/rename"))
+  fieldset
+    legend 设置
+    .clearfix
+      label(for='node_name') 
+      .input
+        input#node_name(type='text', name='label', value=node.label)
+        | &nbsp;
+        input.btn(type='submit', value='改名')
+form#share(method='POST', action=nodePath(node, "admin/share"))
+  fieldset
+    legend 成员
+    - each user in users
+      .clearfix
+        label
+        .input= user.login
+    .clearfix
+      label(for='user_login') 用户名
+      .input
+        input#user_login(type='text', name='login', value="")
+        | &nbsp;
+        input.btn(type='submit', value='添加')
+

@@ -1,0 +1,9 @@
+.wrap
+  h1 Nodebus API
+  p Nodebus提供了一个简单灵活的api来发送消息给手机。
+  p  利用curl发送通知示例：
+    br
+    pre curl -u "user.node:key" -d "msg=Hello world." http://api.nodebus.com/1/send_notification
+  p  利用邮件发送通知示例：
+    br
+    pre echo "Hello world." | mail -s "notificaiton" user.node-key@push.nodebus.com

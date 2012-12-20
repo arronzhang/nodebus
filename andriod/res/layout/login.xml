@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
+  <!-- 
+  <TextView    
+    android:id="@+id/loginLabel"  
+    android:layout_width="fill_parent"   
+    android:layout_height="wrap_content"   
+    android:layout_marginLeft="20dip"  
+    android:layout_marginRight="20dip"  
+    android:text="@string/login"  
+    android:gravity="left">  
+    </TextView> 
+     -->
+    <EditText   
+        android:id="@+id/login"  
+        android:layout_height="wrap_content"   
+        android:layout_width="fill_parent"   
+        android:layout_marginLeft="20dip"  
+        android:layout_marginRight="20dip"  
+        android:singleLine="true"
+        android:autoText="false"  
+        android:capitalize="none"  
+        android:hint="@string/username"
+        android:gravity="fill_horizontal"  >  
+    </EditText>  
+    <!-- 
+     <TextView    
+    android:id="@+id/passwordLabel"  
+    android:layout_width="fill_parent"   
+    android:layout_height="wrap_content"   
+    android:layout_marginLeft="20dip"  
+    android:layout_marginRight="20dip"  
+    android:text="@string/password"  
+    android:gravity="left"  >  
+    </TextView>  
+      -->     
+    <EditText   
+        android:id="@+id/password"  
+        android:layout_height="wrap_content"   
+        android:layout_width="fill_parent"   
+        android:layout_marginLeft="20dip"  
+        android:layout_marginRight="20dip"  
+        android:autoText="false"  
+        android:capitalize="none"  
+        android:gravity="fill_horizontal"  
+        android:password="true"
+        android:hint="@string/password" 
+        android:singleLine="true">  
+    </EditText>  
+    
+</TableLayout>

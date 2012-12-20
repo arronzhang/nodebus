@@ -1,0 +1,12 @@
+div.wrap
+  h1 编辑节点
+  form(method='POST', action="/"+node.user+"/"+node.name+"/update")
+    - if (errors && errors.length)
+      p.error!= errors.join("<br />")
+    p
+      label(for='node_label') 节点名称
+      br
+      input#node_label(type='text', name='label', value=node.label)
+    p
+      input.button(type='submit', value='确定')
+

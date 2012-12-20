@@ -1,0 +1,17 @@
+pre code{
+	background-color: transparent;
+	color: #404040;
+	padding: 0;
+}
+
+footer{
+	margin-bottom: 30px;
+}
+
+footer .contacts{
+	float: right;
+}
+
+footer .contacts img{
+	margin: 0 3px -2px 10px;
+}

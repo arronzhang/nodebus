@@ -1,0 +1,35 @@
+.row
+  .span10
+    .content
+      .page-header
+        h1 管理节点
+          a.btn(href=nodePath(node)) &laquo;返回节点
+      - if (errors && errors.length)
+        .alert-message.error
+          p!= errors.join("<br />")
+      form#rename(method='POST', action=nodePath(node, "admin/rename"))
+        fieldset
+          legend 设置
+          .clearfix
+            label(for='node_name') 
+            .input
+              input#node_name(type='text', name='label', value=node.label)
+              | &nbsp;
+              input.btn(type='submit', value='改名')
+      form#share(method='POST', action=nodePath(node, "admin/share"))
+        fieldset
+          legend 共享
+          - each user in node.users
+            .clearfix
+              label
+              .input= user.login
+                - if(node.user == currentUser.login ? (user.login != node.user) : (user.login == currentUser.login))
+                  | &nbsp;
+                  a.del(href=nodePath(node, "admin/unfollow?login="+user.login), title="取消共享") &times;
+          .clearfix
+            label(for='user_login') 用户名
+            .input
+              input#user_login(type='text', name='login', value="")
+              | &nbsp;
+              input.btn(type='submit', value='添加')
+          .clearfix

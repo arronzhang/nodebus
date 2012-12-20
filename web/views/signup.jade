@@ -1,0 +1,32 @@
+h1 注册
+- if (errors && errors.length)
+  .alert-message.error
+    p!= errors.join("<br />")
+form(method='POST', action="/signup")
+  .clearfix
+    label(for='login') 用户名
+    .input
+      input#login(type='text', name='login', value=user.login)
+      span.help-inline 用来登录，只能是3到12位的小写字母和数字
+  .clearfix
+    label(for='email') 邮箱
+    .input
+      input#email(type='text', name='email', value=user.email)
+      span.help-inline 接收通知邮件
+  .clearfix
+    label(for='name') 名字
+    .input
+      input#name(type='text', name='name', value=user.name)
+      span.help-inline 个人称呼
+  .clearfix
+    label(for='password') 密码
+    .input
+      input#password(type='password', name='password', value='')
+      span.help-inline 6到12位任意组合
+  .clearfix
+    label(for='password_confirmation') 确认密码
+    .input
+      input#password_confirmation(type='password', name='password_confirmation', value='')
+  .actions
+    input.btn.primary(type='submit', value='注册')
+    

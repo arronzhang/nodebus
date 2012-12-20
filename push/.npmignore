@@ -1,0 +1,5 @@
+support
+test
+examples
+node_modules
+*.sock

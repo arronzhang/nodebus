@@ -1,0 +1,31 @@
+!!! mobile
+html(xmlns="http://www.w3.org/1999/xhtml")
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
+    meta(name='format-detection', content="telephone=no")
+    //link(rel="apple-touch-icon", href="favicon-57.png")
+    title= title
+    link(rel='stylesheet', href='/css/mbase.css?v=m1')
+  body
+    #doc
+      #header.clearfix
+        h2#logo 
+          a(href="/")
+            span Nodebus
+            //img(src="/images/logo32.png")
+        - if (currentUser)
+          #usernav
+            a(href="/nodes") 节点
+            //a(href="/account")= currentUser.name
+            //em= (new Date())
+            a(href="/logout") 退出
+        - if (!currentUser)
+          #usernav
+            a(href="/signup") 注册
+      - if (error.length)
+        p.error= error.join(",")
+      - if (info.length)
+        p.info= info.join(",")
+      #content
+        != body

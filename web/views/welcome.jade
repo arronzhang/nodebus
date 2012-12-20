@@ -1,0 +1,54 @@
+h1(style="margin-top: 30px;") 欢迎使用NodeBus
+h3 主机监控
+p NodeBus使用节点来管理主机，首先您需要为一个主机创建一个节点，获得一个apikey。
+p 
+  br
+  a.btn.primary(href="/nodes/new") 创建节点&raquo;
+  br
+  br
+  br
+//p NodeBus使用Smarta来管理主机，Smarta是由NodeBus开发的开源主机监控软件。
+  a(href="https://github.com/nodebus/smarta",target="_blank") Smarta项目开源地址 &raquo;
+//ol
+  li 首先，您需要在网站上创建一个节点，获得一个apikey，用做Smarta客户端登录。
+    a(href="/nodes/new") 添加Smarta节点 &raquo;
+  li 下载最新版的Smarta，安装到服务器上。
+    a(href="https://github.com/nodebus/smarta/downloads",target="_blank") 下载Samrta &raquo;
+  li 在服务器上配置Smarta的账号，apikey和监控项目，启动Smarta。
+    a(href="https://github.com/nodebus/smarta#readme",target="_blank") Smarta安装，配置说明 &raquo;
+h3 和主机即时通信
+p NodeBus使用XMPP协议和服务器即时通信，使用任何一个Jabber客户端登录NodeBus后，您将能即时收到由主机发送过来消息。您还能发送命令到主机查看一些主机信息。
+p NodeBus的jabber账号为
+  code 用户名@nodebus.com
+  | ，密码即NodeBus网站登录密码。
+  | jabber服务器配置：服务器
+  code nodebus.com
+  | ，端口
+  code 5222
+p jabber客户端 
+  a(href="http://xmpp.org/xmpp-software/clients/") 更多&raquo;
+ul
+  li Windows
+    | &nbsp;
+    a(href="http://www.pidgin.im/download/windows/", target="_blank") Pidgin
+  li Mac OS
+    | &nbsp;
+    a(href="http://www.apple.com.cn/macosx/apps/all.html#ichat", target="_blank") iChat
+    | &nbsp;
+    a(href="http://adium.im", target="_blank") Adium
+  li Linux
+    | &nbsp;
+    a(href="http://www.pidgin.im/download/ubuntu/", target="_blank") Pidgin
+h3 手机使用NodeBus
+p 使用NodeBus手机版本，可以即时收到主机发送的通知。
+p 敬请期待......
+h3 关注NodeBus
+p QQ群号：12222225
+p 新浪微博：
+  a(href="http://weibo.com/nodebus", target="_blank") @NodeBus
+p 在线支持：QQ 2673552801 或者使用右下角的即时聊天工具
+p NodeBus暂时使用GitHub的任务单来管理网站的Bug和新需求。
+  a(href="https://github.com/nodebus/nodebus.github.com/issues",target="_blank") 任务单地址 &raquo;
+p
+  a.btn(href="/") &laquo;回首页
+

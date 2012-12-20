@@ -1,0 +1,63 @@
+h1 节点工具箱
+- if ( nodes )
+  h3 导入结果
+  p 导入
+    span.label= nodes.length
+    | 个，成功
+    span.label.success= nodes.ok.length
+    | 个，失败
+    span.label.warning= nodes.fail.length
+    | 个
+  table.bordered-table.zebra-striped
+    thead
+      tr
+        th 状态
+        th 行
+        th name
+        th label
+        th host
+    tbody
+      - each node in nodes.fail
+        tr
+          td
+            span.label.warning= node.error 
+          td= node.id
+          td= node.name
+          td= node.label
+          td= node.host
+      - each node in nodes.ok
+        tr
+          td
+            span.label.success= node.success
+          td= node.id
+          td= node.name
+          td= node.label
+          td= node.host
+h3 批量导入
+p 在您节点很多的情况下，你可能需要将节点批量导入到网站中，使用导入工具，你可以先使用Excel整理好节点，保存为CSV格式，然后直接导入到网站中。
+p 表中必须的字段有name,label,host。其中name为唯一字段。
+p 示例：
+img(src="/images/nodes_grid.png", alt="节点列表示例")
+p
+form(method='POST', action="/nodes/tool", enctype="multipart/form-data")
+  .clearfix
+    label(for='file') 节点文件
+    .input
+      input#file(type='file', name='file', multiple="multiple")
+      span.help-block 仅仅支持CSV格式
+  .actions
+    input.btn.primary(type='submit', value='导入')
+h3 生成SmartaX配置
+p 按照给定格式，生成SmartaX配置文件
+p 支持替换的节点参数$NAME, $APIKEY, $LABEL, $HOST
+p
+form(method='GET', action="/smartax.conf")
+  .clearfix
+    label(for='text') 单节点配置
+    .input
+      textarea#text.xxlarge(type='text', name='text', rows="10")
+        node { \n\t name $NAME \n\t apikey $APIKEY \n\t sensor { \n\t\t name $LABEL \n\t\t period 5 \n\t\t attempts 3 \n\t\t attempt interval 1 \n\t\t command check_ping -H $HOST \n\t} \n}
+      span.help-block 
+  .actions
+    input.btn.primary(type='submit', value='生成')
+

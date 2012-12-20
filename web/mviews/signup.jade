@@ -1,0 +1,32 @@
+div.wrap
+  h1 注册
+  form(method='POST', action="/signup")
+    - if (errors && errors.length)
+      p.error!= errors.join("<br/>")
+    p
+      label(for='login') 用户名
+      br
+      input#login(type='text', name='login', value=user.login)
+      | 用来登录，只能是3到12位的小写字母和数字
+    p
+      label(for='email') 邮箱
+      br
+      input#email(type='text', name='email', value=user.email)
+      | 接收通知邮件
+    p
+      label(for='name') 名字
+      br
+      input#name(type='text', name='name', value=user.name)
+      | 个人称呼
+    p
+      label(for='password') 密码
+      br
+      input#password(type='password', name='password', value='')
+      | 6到12位任意组合
+    p
+      label(for='password_confirmation') 确认密码
+      br
+      input#password_confirmation(type='password', name='password_confirmation', value='')
+    p
+      input.button(type='submit', value='注册')
+

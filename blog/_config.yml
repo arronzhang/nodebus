@@ -1,0 +1,17 @@
+markdown: rdiscount
+auto: true
+permalink: /:year/:month/:title/
+server: true
+pygments: true
+
+paginate: 20
+
+exclude: ["README.md", "LICENSE.md", "TODO.md", "build", "test"]
+
+url: http://dev.nodebus.com
+title: NodeBus
+subtitle: A blogging framework for hackers.
+author: nodebus.com
+email: nodebus@gmail.com
+
+rss: /atom.xml

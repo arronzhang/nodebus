@@ -1,5 +1,4 @@
 .DS_Store
 *.sock
 *.swp
-data
-smarta*
+_site

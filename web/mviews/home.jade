@@ -1,0 +1,20 @@
+- if(!messages.length)
+  div
+- else
+.wrap
+  h1 我的消息
+ul#messages.list
+  - each message in messages
+    li(class=message.type)
+      h3
+        span.time= formatDate(message.createdAt)
+        span.title= message.nodeLabel
+      - if(message.uri)
+        p.msg
+          - if((message.uri || "").slice(0,4) == "http")
+            a(href=message.uri, target="_blank")= message.msg
+          - else
+            = message.msg
+      - else
+        p.msg= message.msg
+

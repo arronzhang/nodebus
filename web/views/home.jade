@@ -1,0 +1,190 @@
+.row
+  .span10
+    .content
+      - if(node)
+        .page-header
+          h1
+            a#share-btn.btn(href=nodePath(node.name, "admin#share"), style="float:right;")= "共享(" + node.users.length + ")"
+            a#rename-btn.btn(href=nodePath(node.name, "admin#rename"), style="float:right;") 改名
+            = node.label
+              |  
+              //small= node.name
+          .desc
+            .attrs(class=showDesc ? "" : "hide")
+              p
+                strong 账号
+                | &nbsp;
+                code= node.name
+                | &nbsp;
+                strong apikey
+                | &nbsp;
+                code= node.apikey
+              p!= escapeMsg(node.descr)
+              - if(node.user == currentUser.login)
+                form(onsubmit="return confirm('确认删除节点？')", method='POST', action=nodePath(node))
+                  input(type="hidden", name="_method", value="delete")
+                  p
+                    input.btn(type='submit', value='删除节点')
+              - else
+                form(onsubmit="return confirm('确认取消关注？')", method='GET', action=nodePath(node, "admin/unfollow"))
+                  input(type="hidden", name="login", value=currentUser.login)
+                  p
+                    input.btn(type='submit', value='取消关注')
+            a.trigger(href=nodePath(node, showDesc ? "" : "?desc"), class=showDesc ? "" : "down") 
+              span 更多
+              i  
+      - else
+        .page-header
+          h1 所有消息
+      - if(!messages.length)
+        .doc
+          p 
+            - if( node && node.presence && node.presence.toLowerCase() == "available" )
+              strong 暂无消息!
+            - else
+              - if (node)
+                - showInstall = 1
+              //span NodeBus使用Smarta来管理主机
+              //- if ( !node )
+              //  br
+              //  a(href="nodes/new") 新建节点 &raquo;
+              //br
+              //a(href="https://github.com/nodebus/smarta/downloads",target="_blank") 下载Samrta &raquo;
+              //br
+              //a(href="https://github.com/nodebus/smarta#readme",target="_blank") Smarta安装，配置说明 &raquo;
+      - else
+        ul#messages.list
+          - each message in messages
+            li(class=message.type)
+              - if( !node )
+                h5
+                  a.title(href=nodePath(message.node))= message.nodeLabel
+                  | &nbsp;
+                  = message.title
+              - else
+                h5
+                  = message.title
+              - if(message.uri)
+                p.msg
+                  - if((message.uri || "").slice(0,4) == "http")
+                    a(href=message.uri, target="_blank")!= escapeMsg(message.msg)
+                  - else
+                    != escapeMsg(message.msg)
+              - else
+                p.msg!= escapeMsg(message.msg)
+              - if(message.chart)
+                p
+                  img(src=message.chart)
+              span.time= formatDate(message.createdAt)
+      - if (showInstall)
+        #install.doc
+          p NodeBus使用Smarta来管理主机，按照下面的步骤在被监控主机上安装Smarta
+          ol
+            li
+              p 下载Smarta 
+              p Linux64版
+              pre curl -O http://cloud.github.com/downloads/nodebus/smarta/smarta-0.7.1-linux64.tgz
+              p Linux32版
+              pre curl -O http://cloud.github.com/downloads/nodebus/smarta/smarta-0.7.1-linux32.tgz
+            li
+              p 解压文件
+              p Linux64版
+              pre tar zxvf smarta-0.7.1-linux64.tgz
+              p Linux32版
+              pre tar zxvf smarta-0.7.1-linux32.tgz
+            li
+              p 配置Smarta
+              pre cd smarta \nvim smarta.conf
+              p 配置账号和apikey
+              pre smarta {\n    name    #{node.name}\n    apikey  #{node.apikey}\n}
+            li
+              p 启动Smarta
+              pre ./smarta
+    - if(page > 1 || count == messages.length)
+      .pagination
+        ul
+          - if(page > 1)
+            li.prev
+              a(href="?page=" + (page-1)) &larr;更近的
+          - if(count == messages.length)
+            li.next
+              a(href="?page=" + (page+1)) 更早的&rarr;
+  .span6
+    .well
+      h3 
+        a#nodenew-btn.btn(href="/nodes/new") 添加
+        a(href="/") 节点(#{nodes.length})
+      - if(nodes.length)
+      ul#nodes.nodes.unstyled
+        - each doc in nodes
+          - var url = nodePath(doc.name)
+          - var login = doc.name + ":" + doc.apikey
+          - var mail = doc.name + "-" + doc.apikey + "@push.nodebus.com"
+          li
+            h5
+              - if(node && node.name == doc.name)
+                span.current &raquo;
+              em.icon(class=nodeStatusClass( doc ), title=nodeStatusTitle( doc ))
+              a(href=url)= doc.label
+              |  
+              small= doc.name
+              - var content = "<h5>API账号</h5> <code>" + doc.name + ":" + doc.apikey + "</code>"
+              - content += "<h5>Mail账号</h5> <code>" + doc.name + "-" + doc.apikey + "@push.nodebus.com</code>"
+              //a.api.icon.icon-api(title="APIKEY <small>" + doc.apikey + "</small>", data-content=content, href="#")
+- if(node)
+  form#rename-form.modal.hide.fade(method='POST', action=nodePath(node, "admin/rename"))
+    .modal-header
+      a.close(href="#") &times;
+      h3 改名
+    .modal-body
+      .clearfix
+        label(for='node_name') 名称
+        .input
+          input#node_name(type='text', name='label', value=node.label)
+          | &nbsp;
+    .modal-footer
+      input.btn.primary(type='submit', value='确定')
+  form#share-form.modal.hide.fade(method='POST', action=nodePath(node, "admin/share"))
+    .modal-header
+      a.close(href="#") &times;
+      h3 共享
+    .modal-body
+      - each user in node.users
+        .clearfix
+          label
+          .input= user.login
+            - if(node.user == currentUser.login ? (user.login != node.user) : (user.login == currentUser.login))
+              | &nbsp;
+              a.del(href=nodePath(node, "admin/unfollow?login="+user.login), title="取消共享") &times;
+      .clearfix
+        label(for='user_login') 用户名
+        .input
+          input#user_login(type='text', name='login', value="")
+    .modal-footer
+      input.btn.primary(type='submit', value='确定')
+form#nodenew-form.modal.hide.fade(method='POST', action="/nodes/create")
+  .modal-header
+    a.close(href="#") &times;
+    h3 添加节点
+  .modal-body
+    .clearfix
+      label(for='node_name') 节点账号
+      .input
+        .input-prepend
+          span.add-on= currentUser.login + "."
+          input#node_name.medium(type='text', name='name')
+        span.help-block 只能是3到12位的小写字母和数字，例: web
+    .clearfix
+      label(for='node_label') 节点名称
+      .input
+        input#node_label(type='text', name='label')
+        span.help-block 例: Web服务器
+  .modal-footer
+    input.btn.primary(type='submit', value='确定')
+script(type='text/javascript')
+  $("#rename-form").modal({keyboard: true});
+  $("#rename-btn").click(function(){$("#rename-form").modal("show");return false;});
+  $("#share-form").modal({keyboard: true});
+  $("#share-btn").click(function(){$("#share-form").modal("show");return false;});
+  $("#nodenew-form").modal({keyboard: true});
+  $("#nodenew-btn").click(function(){console.log($("#nodenew-form").modal("show"));return false;});

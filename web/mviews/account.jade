@@ -1,0 +1,32 @@
+div.wrap
+  - if (!user.valid())
+    p.error!= user.errors.join("<br/>")
+  h3 信息
+  form(method='POST', action="/account")
+    div
+      input(type='hidden', name='_method', value="put")
+    p
+      label(for='name') 名字
+      br
+      input#name(type='text', name='name', value=user.name)
+    p
+      input.button(type='submit', value='修改')
+  h3 密码
+  form(method='POST', action="/account")
+    div
+      input(type='hidden', name='_method', value="put")
+    p
+      label(for='old_password') 当前密码
+      br
+      input#old_password(type='password', name='old_password', value='')
+    p
+      label(for='password') 新密码
+      br
+      input#password(type='password', name='password', value='')
+    p
+      label(for='password_confirmation') 确认新密码
+      br
+      input#password_confirmation(type='password', name='password_confirmation', value='')
+    p
+      input.button(type='submit', value='修改')
+

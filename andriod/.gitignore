@@ -1,5 +1,6 @@
+bin/*
+gen/*
 .DS_Store
 *.sock
 *.swp
-data
-smarta*
+*.apk

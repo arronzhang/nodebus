@@ -1,0 +1,23 @@
+{
+	"name": "api.nodebus.com"
+	, "version": "0.0.1"
+	, "description": "nodebus application interface"
+	, "keywords": []
+	, "author": "hidden <zzdhidden@gmail.com>"
+	, "dependencies": { 
+		"express": "2.5.1"
+		, "optimist": "0.2.8"
+		, "colors": "0.5.1" 
+	}
+	, "devDependencies": { 
+		"expresso": "0.9.2"
+		, "should": "0.3.1" 
+	}
+	, "main": "index"
+	, "engines": { "node": "0.4.x" }
+	, "scripts": { 
+		"start": "P=`ps ax | grep 'index.js -h 127.0.0.1 -p 6201' | grep -v grep | awk '{print $1}'`; if [ \"$P\" != \"\" ];then echo 'Server has started'; else echo 'Start server'; `NODE_ENV=production nohup node index.js -h 127.0.0.1 -p 6201 >> logs/server.log 2>&1 &`; ps ax | grep 'index.js -h 127.0.0.1 -p 6201' | grep -v grep | awk '{print $1}' > logs/server.pid;fi"
+		,"stop": "P=`ps ax | grep 'index.js -h 127.0.0.1 -p 6201' | grep -v grep | awk '{print $1}'`; if [ \"$P\" != \"\" ];then kill $P; rm logs/server.pid; echo 'Stop server'; else echo 'Server not found';fi"
+		,"test": "NODE_ENV=test ./node_modules/.bin/expresso -I lib test/*.test.js"
+	}
+}

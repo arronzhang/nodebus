@@ -1,0 +1,19 @@
+.wrap
+  h1 节点
+    a.btn(href="/nodes/new") 添加
+- if(nodes.length)
+ul#nodes.list
+  - each node in nodes
+    - var url = "/" + node.name.replace(".","/")
+    - var login = node.name + ":" + node.apikey
+    - var mail = node.name + "-" + node.apikey + "@push.nodebus.com"
+    li
+      h5
+        a(href=url)= node.label
+      p
+        span API账号  
+        span.lite= login
+        br
+        span Mail账号 
+        span.lite= mail
+//p#notice 添加节点

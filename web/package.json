@@ -1,0 +1,29 @@
+{
+	"name": "www.nodebus.com"
+  , "version": "0.0.1"
+  , "description": "nodebus web"
+  , "keywords": []
+  , "author": "hidden <zzdhidden@gmail.com>"
+  , "dependencies": { 
+	  "express": "2.5.1"
+	, "jade": "0.17.0"
+	, "optimist": "0.2.8"
+	, "colors": "0.5.1" 
+	, "mongoq": ">=0.2.3"
+	, "EVE": "0.0.4"
+	, "cron": "0.1.3"
+	, "smarta": "0.3.1"
+	, "iconv": "1.1.3"
+	, "csv": "0.0.10"
+	, "async": "0.1.15"
+	}
+  , "devDependencies": { 
+	  "should": "0.3.1" 
+	}
+  , "main": "index"
+  , "engines": { "node": ">=0.6.0" }
+  , "scripts": { 
+	  "start": "P=`ps ax | grep 'index.js -h 127.0.0.1 -p 6101' | grep -v grep | awk '{print $1}'`; if [ \"$P\" != \"\" ];then echo 'Server has started'; else echo 'Start server'; `NODE_ENV=production nohup node index.js -h 127.0.0.1 -p 6101 >> logs/server.log 2>&1 &`; ps ax | grep 'index.js -h 127.0.0.1 -p 6101' | grep -v grep | awk '{print $1}' > logs/server.pid; fi; P=`ps ax | grep 'index.js -h 127.0.0.1 -p 6111' -m 1| grep -v grep | awk '{print $1}'`; if [ \"$P\" != \"\" ];then echo 'Server has started'; else echo 'Start server'; `NODE_ENV=production nohup node index.js -h 127.0.0.1 -p 6111 -m 1 >> logs/mserver.log 2>&1 &`; ps ax | grep 'index.js -h 127.0.0.1 -p 6111 -m 1' | grep -v grep | awk '{print $1}' > logs/mserver.pid; fi"
+	,"stop": "P=`ps ax | grep 'index.js -h 127.0.0.1 -p 6101' | grep -v grep | awk '{print $1}'`; if [ \"$P\" != \"\" ];then kill $P; rm logs/server.pid; echo 'Stop server'; else echo 'Server not found';fi; P=`ps ax | grep 'index.js -h 127.0.0.1 -p 6111 -m 1' | grep -v grep | awk '{print $1}'`; if [ \"$P\" != \"\" ];then kill $P; rm logs/mserver.pid; echo 'Stop server'; else echo 'Server not found';fi"
+	}
+}

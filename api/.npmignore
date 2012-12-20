@@ -1,0 +1,6 @@
+support
+test
+examples
+node_modules
+npm-debug.log
+*.sock

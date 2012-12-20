@@ -1,0 +1,17 @@
+div.wrap
+  h1 新增节点
+  form(method='POST', action="/nodes/create")
+    - if (errors && errors.length)
+      p.error!= errors.join("<br />")
+    p
+      label(for='node_name') 节点账号
+      br
+      input#node_name(type='text', name='name', value=node.name)
+      | 节点API账号，只能是3到12位的小写字母和数字
+    p
+      label(for='node_label') 节点名称
+      br
+      input#node_label(type='text', name='label', value=node.label)
+    p
+      input.button(type='submit', value='确定')
+

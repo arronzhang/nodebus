@@ -1,0 +1,16 @@
+- var node = nodes && nodes[0]
+- var login = node ? (node.name + ":" + node.apikey) : "API账号"
+- var mail = node ? (node.name + "-" + node.apikey + "@push.nodebus.com") : "Mail账号"
+.wrap
+  h1 欢迎使用Nodebus
+  ul
+    li 要使用Nodebus api发通知，您首先需要建立一个节点，Nodebus使用节点来管理API账号，您可以为不同的通知来源建立不同的节点，系统首先会为你初始化一个节点。
+    li 然后在手机客户端并使用Nodebus账号登录 ( 
+      a(href="/images/nodebus-andriod-0.1.apk") android版
+      | , iphone版)
+    li 测试linux curl命令发送通知
+      pre curl -u "#{login}" -d "msg=Hello world." http://api.nodebus.com/1/send_notification
+    li 测试邮件发送通知
+      br
+      a(href="mailto:" + mail + "?subject=test&body=Hello world.")= mail
+    li 手机上没收到通知了么？
